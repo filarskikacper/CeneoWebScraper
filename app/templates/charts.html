@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %} {{product_id}} - {{product_name}} {% endblock %}
+{% block content %}
+<div class="btn-group" role="group" aria-label="Basic example">
+  <a type="button" class="btn btn-outline-dark" href="{{url_for('product', product_id=product_id, product_name=product_name)}}"><i class="bi bi-book"></i></a>
+</div>
+<div class="text-center">
+<img src="{{url_for('static', filename='images/charts/'+product_id+'_pie.png')}}"  class="img-fluid" alt="Rozkład rekomendacji w opiniach o produkcie">
+</div>
+{% endblock %}

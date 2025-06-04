@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 {% block title %} {{product_id}} - {{product_name}} {% endblock %}
 {% block content %}
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a type="button" class="btn btn-outline-secondary" href="#">CSV</a>
+    <a type="button" class="btn btn-outline-secondary" href="#">XLSX</a>
+    <a type="button" class="btn btn-outline-secondary" href="#">JSON</a>
+    <a type="button" class="btn btn-outline-dark" href="#"><i class="bi bi-bar-chart-fill"></i></a>
+    <a type="button" class="btn btn-outline-dark" href="{{url_for('charts', product_id=product_id)}}"><i class="bi bi-pie-chart-fill"></i></a>
+</div>
+<div class="table-responsive">
     {{opinions|safe}}
+</div>
 {% endblock %}
 {% block script %}
 <script>
     let table = new DataTable('#opinions', {
-    // options
-});
+        // options
+    });
 </script>
 {% endblock %}

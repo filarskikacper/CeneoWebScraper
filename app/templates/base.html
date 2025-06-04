@@ -13,37 +13,43 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Ceneo Web Scraper</a>
+            <a class="navbar-brand" href="{{url_for('index')}}">
+                Ceneo Web Scraper
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item active"><a class="nav-link" href="{{url_for('index')}}">Strona główna</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('display_form')}}">Ekstrakcja opinii</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('products')}}">Lista produktów</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('author')}}">O autorze</a></li>
+                    <a class="nav-link" href="{{url_for('index')}}">Strona główna</a>
+                    <a class="nav-link" href="{{url_for('display_form')}}">Ekstrakcja opinii</a>
+                    <a class="nav-link" href="{{url_for('products')}}">Lista produktów</a>
+                    <a class="nav-link" href="{{url_for('author')}}">O autorze</a>
                 </ul>
             </div>
         </div>
     </nav>
-    <header>
-        <h3 class="position-relative">{% block title %} {% endblock %}</h2>
-    </header>
-    <div col-9 offset-md-2>
-        {% block content %}
+<div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-9">
+        <div class="card shadow border text-center mt-4">
+            <header class="card-title mt-4">
+                <h3>{% block title %} {% endblock %}</h2>
+            </header>
+                <div class="card-body mt-4">
+                    {% block content %}
 
-        {% endblock %}
-    </div>
-    </div>
-    <footer class="footer d-flex flex-column flex-sm-row justify-content-center border-top fixed-bottom">
-        <p>Kacper Filarski, Uniwersytet Ekonomiczny w Krakowie</p>
-    </footer>
+                    {% endblock %}
+                </div>
+            <hr>
+            <p>Kacper Filarski, Uniwersytet Ekonomiczny w Krakowie</p>
+        </div>
+        </div>
+        </div>
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"

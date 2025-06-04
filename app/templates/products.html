@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}Lista produktów{% endblock %}
 {% block content %}
-
+<ul class="list-group">
+ {% for product in products %}
+         <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a type="button" class="btn btn-ceneo" href="{{url_for('product', product_id=product.product_id, product_name=product.product_name)}}">{{product.product_id}}</a>
+            <span>{{product.product_name}}</span>
+            <span class="badge bg-primary rounded-pill">{{product.opinions_count}}</span>
+            <span class="badge bg-success rounded-pill">{{product.pros_count}}</span>
+            <span class="badge bg-danger rounded-pill">{{product.cons_count}}</span>
+            <span class="badge bg-ceneo rounded-pill">{{product.average_stars|round(2)}}</span>
+            <a type="button" class="btn btn-outline-secondary" href="#">CSV</a>
+            <a type="button" class="btn btn-outline-secondary" href="#">XLSX</a>
+            <a type="button" class="btn btn-outline-secondary" href="#">JSON</a>
+        </li>
+ {% endfor %}
+ </ul>
 {% endblock %}

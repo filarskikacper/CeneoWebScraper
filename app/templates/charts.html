@@ -4,7 +4,8 @@
 <div class="btn-group" role="group" aria-label="Basic example">
   <a type="button" class="btn btn-outline-dark" href="{{url_for('product', product_id=product_id, product_name=product_name)}}"><i class="bi bi-book"></i></a>
 </div>
-<div class="text-center">
+<div class="container">
 <img src="{{url_for('static', filename='images/charts/'+product_id+'_pie.png')}}"  class="img-fluid" alt="Rozkład rekomendacji w opiniach o produkcie">
+<img src="{{url_for('static', filename='images/charts/'+product_id+'_bar.png')}}"  class="img-fluid" alt="Liczba opinii z poszczególną liczbą gwiazdek dla produktu">
 </div>
 {% endblock %}

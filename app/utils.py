@@ -10,7 +10,7 @@ selectors = {
     "unuseful": ("button.vote-no > span",),
     "post_date": ("span.user-post__published > time:nth-child(1)", 'datetime'),
     "purchase_date": ("span.user-post__published > time:nth-child(2)", 'datetime'),
-}
+    }
 
 def extract_feature(ancestor, selector=None, attribute=None, multiple=False):
     if selector:

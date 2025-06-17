@@ -1,19 +1,36 @@
 {% extends 'base.html' %}
 {% block title %}Lista produktów{% endblock %}
 {% block content %}
-<ul class="list-group">
- {% for product in products %}
-         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <a type="button" class="btn btn-ceneo" href="{{url_for('product', product_id=product.product_id, product_name=product.product_name)}}">{{product.product_id}}</a>
-            <span>{{product.product_name}}</span>
-            <span class="badge bg-primary rounded-pill">{{product.opinions_count}}</span>
-            <span class="badge bg-success rounded-pill">{{product.pros_count}}</span>
-            <span class="badge bg-danger rounded-pill">{{product.cons_count}}</span>
-            <span class="badge bg-ceneo rounded-pill">{{product.average_stars|round(2)}}</span>
-            <a type="button" class="btn btn-outline-secondary" href="#">CSV</a>
-            <a type="button" class="btn btn-outline-secondary" href="#">XLSX</a>
-            <a type="button" class="btn btn-outline-secondary" href="#">JSON</a>
-        </li>
- {% endfor %}
- </ul>
+<div class="table-responsive">
+<table class="table table-bordered">
+    <tr>
+        <th>ID produktu</th>
+        <th>Nazwa produktu</th>
+        <th>Ilość opinii</th>
+        <th>Liczba zalet</th>
+        <th>Liczba wad</th>
+        <th>Ocena produktu</th>
+        <th>Pliki do pobrania</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td><a type="button" class="btn btn-outline-success"
+                href="{{url_for('product', product_id=product.product_id, product_name=product.product_name)}}">{{product.product_id}}</a>
+        </td>
+        <td><a href="https://www.ceneo.pl/{{product.product_id}}" class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">{{product.product_name}}</a></td>
+        <td><span class="badge bg-primary rounded-pill">{{product.stats["opinions_count"]}}</span></td>
+        <td><span class="badge bg-success rounded-pill">{{product.stats["pros_count"]}}</span></td>
+        <td><span class="badge bg-danger rounded-pill">{{product.stats["cons_count"]}}</span></td>
+        <td><span class="badge bg-warning rounded-pill">{{product.stats["average_stars"]|round(2)}}</span></td>
+        <td>
+            <div class="container" style="display: flex;"><a type="button" class="btn btn-outline-secondary"
+                    href="{{url_for('download', product_id=product.product_id, file_type='csv')}}">CSV</a>
+                <a type="button" class="btn btn-outline-secondary" href="{{url_for('download', product_id=product.product_id, file_type='xlsx')}}">XLSX</a>
+                <a type="button" class="btn btn-outline-secondary" href="{{url_for('download', product_id=product.product_id, file_type='json')}}">JSON</a>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
 {% endblock %}
